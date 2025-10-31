@@ -1,7 +1,7 @@
 
 const FingerprintIcon = () => (
-  // CORREGIDO: viewBox="0 0 24" 24" -> viewBox="0 0 24 24"
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-fingerprint-icon lucide-fingerprint text-white"> {/* Asegura color blanco */}
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-fingerprint-icon lucide-fingerprint text-white"> 
     <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
     <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
     <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
@@ -15,9 +15,8 @@ const FingerprintIcon = () => (
 );
 
 export const Logo = () => (
-  // 2. EL COMPONENTE LOGO USA EL ICONO
-  <a href="#" className="flex items-center gap-2"> {/* gap-2 añade espacio entre icono y texto */}
-    <FingerprintIcon /> {/* Icono añadido */}
+  <a href="#" className="flex items-center gap-2">
+    <FingerprintIcon />
     <span className="text-2xl font-bold text-white tracking-tight">SUDÁN-FREE</span>
   </a>
 );

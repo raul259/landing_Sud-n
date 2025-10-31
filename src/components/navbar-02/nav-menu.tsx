@@ -4,30 +4,24 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "../../components/ui/navigation-menu";
-import { Link } from "react-router-dom";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
   <NavigationMenu {...props}>
-    <NavigationMenuList className="gap-3 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
+    <NavigationMenuList className="gap-6 space-x-0 justify-center items-center data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-center data-[orientation=vertical]:justify-center">
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link to="#">Home</Link>
+          <a href="#tu-indiferencia">Comparte</a>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link to="#">El Rostro</Link>
+          <a href="https://www.wfp.org/" target="_blank" rel="noopener noreferrer">Tu Elección</a>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link to="#">Tu Elección</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild>
-          <Link to="#">Contact Us</Link>
+          <a href="mailto:amb.ofc.sudan@gmail.com">Contacto</a>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

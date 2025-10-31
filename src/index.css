@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Geist';
-  src: url('/humanitary\public\fonts\Geist\webfonts\Geist[wght].woff2') format('woff2');
+  src: url('/fonts/Geist/webfonts/Geist[wght].woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Geist Mono';
-  src: url('/humanitary\public\fonts\GeistMono\webfonts\GeistMono[wght].woff2') format('woff2'); /*fonts/geist-font-1.5.1/GeistMono/variable/GeistMonoVariable-VF.woff2*/
+  src: url('/fonts/GeistMono/webfonts/GeistMono[wght].woff2') format('woff2'); /*fonts/geist-font-1.5.1/GeistMono/variable/GeistMonoVariable-VF.woff2*/
   font-weight: 100 900;
   font-style: normal;
 }
@@ -53,12 +53,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-
   --font-geist-sans: 'Geist' !important ;
   --font-geist-mono: 'Geist Mono'!important ;
 
-  /* --font-fallback-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-fallback-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
 }
 
 :root {
@@ -94,6 +91,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --font-fallback-sans: 'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-fallback-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .dark {
@@ -136,11 +136,168 @@
   }
 
   body {
-    @apply text-foreground;
+    font-family: var(--font-geist-sans);
+    @apply bg-background text-foreground;
     background-image: url('/Sudan.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* background-repeat: no-repeat; */
+  }
+}
+
+/* Animaciones personalizadas */
+@layer utilities {
+  /* Estados iniciales - elementos invisibles antes de entrar al viewport */
+  .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  
+  .animate-on-scroll.fade-in {
+    transform: translateY(0);
+  }
+  
+  .animate-on-scroll.slide-up {
+    transform: translateY(60px);
+  }
+  
+  .animate-on-scroll.slide-left {
+    transform: translateX(-120px);
+  }
+  
+  .animate-on-scroll.slide-right {
+    transform: translateX(120px);
+  }
+  
+  .animate-on-scroll.scale-in {
+    transform: scale(0.7);
+  }
+  
+  /* Estados activos - cuando el elemento es visible */
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  
+  /* Animación de flotación continua */
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .hover-lift {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .hover-lift:hover {
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Delays escalonados para efectos en grupo */
+  .animate-on-scroll.delay-200 {
+    transition-delay: 0.3s;
+  }
+  
+  .animate-on-scroll.delay-400 {
+    transition-delay: 0.6s;
+  }
+  
+  .animate-on-scroll.delay-600 {
+    transition-delay: 0.9s;
+  }
+  
+  /* Animación de texto blur */
+  .blur-text {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30px);
+    transition: all 1.5s ease-out;
+  }
+  
+  .blur-text.in-view {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+  
+  .blur-text-word {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+    margin-right: 0.5rem;
+  }
+  
+  .blur-text-word.in-view {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
